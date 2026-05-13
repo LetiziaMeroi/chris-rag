@@ -1,0 +1,13 @@
+data_root: /storage/data/chris-rag
+
+documents_dir: /storage/data/chris-rag/documents
+codebooks_dir: /storage/data/chris-rag/documents/codebooks
+governance_dir: /storage/data/chris-rag/documents/governance
+papers_dir: /storage/data/chris-rag/documents/papers
+
+tabular_dir: /storage/data/chris-rag/tabular
+gwas_dir: /storage/data/chris-rag/tabular/GWAS
+
+processed_dir: /storage/data/chris-rag/processed
+indexes_dir: /storage/data/chris-rag/indexes
+logs_dir: /storage/data/chris-rag/logs
