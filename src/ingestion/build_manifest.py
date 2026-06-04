@@ -2,7 +2,7 @@ from pathlib import Path
 import csv
 import hashlib
 from datetime import datetime
-
+import os
 
 DATA_ROOT = Path("/storage/data/chris-rag")
 OUTPUT_FILE = DATA_ROOT / "processed" / "manifest.csv"
@@ -58,8 +58,9 @@ def infer_collection(path: Path) -> str:
 def build_manifest():
     rows = []
 
-    for path in DATA_ROOT.rglob("*"):
-        if path.is_file():
+    for root, dirs, files in os.walk(DATA_ROOT, followlinks=True):
+        for file_name in files:
+            path = Path(root) / file_name
             stat = path.stat()
 
             rows.append({
