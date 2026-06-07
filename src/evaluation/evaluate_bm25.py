@@ -43,13 +43,31 @@ def load_questions(path: Path) -> List[Dict]:
         return list(reader)
 
     
-def find_first_relevant_rank(results: List[Dict], expected_string: str):
-    expected = expected_string.lower()
+def normalize_text(text: str) -> str:
+    """
+    Normalize text for simple string matching.
+    This helps match variants like:
+    13,393 / 13 393 / 13393
+    """
+    text = text.lower()
+    text = text.replace(",", "")
+    text = re.sub(r"\s+", " ", text)
+    return text.strip()
+
+
+def find_first_relevant_rank(results: List[Dict], expected_strings: str):
+    expected_list = [
+        normalize_text(s)
+        for s in expected_strings.split("|")
+        if s.strip()
+    ]
 
     for rank, item in enumerate(results, start=1):
-        text = item["chunk"]["text"].lower()
-        if expected in text:
-            return rank
+        text = normalize_text(item["chunk"]["text"])
+
+        for expected in expected_list:
+            if expected in text:
+                return rank
 
     return None
 
@@ -80,7 +98,7 @@ def main():
 
     for q in questions:
         question = q["question"]
-        expected_string = q["expected_string"]
+        expected_strings = q["expected_strings"]
 
         scores = bm25.get_scores(tokenize(question))
         top_indices = sorted(
@@ -98,14 +116,14 @@ def main():
             for rank, i in enumerate(top_indices, start=1)
         ]
 
-        first_rank = find_first_relevant_rank(results, expected_string)
+        first_rank = find_first_relevant_rank(results, expected_strings)
         metrics = compute_metrics(first_rank)
 
         top1 = results[0]["chunk"]
 
         rows.append({
             "question": question,
-            "expected_string": expected_string,
+            "expected_strings": expected_strings,
             "first_relevant_rank": first_rank if first_rank is not None else "",
             "hit_at_1": metrics["hit_at_1"],
             "hit_at_3": metrics["hit_at_3"],
@@ -122,7 +140,7 @@ def main():
     with OUTPUT_PATH.open("w", newline="", encoding="utf-8") as f:
         fieldnames = [
             "question",
-            "expected_string",
+            "expected_strings",
             "first_relevant_rank",
             "hit_at_1",
             "hit_at_3",

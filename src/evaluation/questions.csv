@@ -1,8 +1,8 @@
-question,expected_string
-How many participants are in the CHRIS baseline study?,"13,393"
-CHRIS baseline participants,"13,393"
-What is the CHRIS data access policy?,"data access policy"
-blood pressure,"Blood pressure"
+question,expected_strings
+How many participants are in the CHRIS baseline study?,"13,393|13 393|13393"
+CHRIS baseline participants,"13,393|13 393|13393"
+What is the CHRIS data access policy?,"data access policy|sample and data access policy"
+blood pressure,"Blood pressure|blood pressure|BP"
 What is the correct full name of the CHRIS study?,"Cooperative Health Research in South Tyrol"
-What is the CHRIS NAFLD sub-study?,"CHRIS-NAFLD"
-What should publications using CHRIS baseline data cite?,"Required references"
+What is the CHRIS NAFLD sub-study?,"CHRIS-NAFLD|NAFLD recall by phenotype|Non-Alcoholic Fatty Liver Disease"
+What should publications using CHRIS baseline data cite?,"Required references|must cite|baseline data or samples must cite"
