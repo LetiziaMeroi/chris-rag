@@ -9,7 +9,12 @@ from rank_bm25 import BM25Okapi
 
 DATA_ROOT = Path("/storage/data/chris-rag")
 CHUNKS_PATH = DATA_ROOT / "processed" / "chunks" / "document_chunks.jsonl"
-
+STOPWORDS = {
+    "the", "a", "an", "and", "or", "of", "to", "in", "on", "for",
+    "is", "are", "was", "were", "be", "been", "being",
+    "what", "which", "who", "how", "many", "much",
+    "does", "do", "did", "with", "from", "by", "as", "at"
+}
 
 def load_chunks(path: Path) -> List[Dict]:
     chunks = []
@@ -29,6 +34,7 @@ def tokenize(text: str) -> List[str]:
     """
     text = text.lower()
     tokens = re.findall(r"[a-zA-Z0-9]+", text)
+    tokens = [t for t in tokens if t not in STOPWORDS and len(t) > 1]
     return tokens
 
 def make_snippet(text: str, query: str, window: int = 450) -> str:
