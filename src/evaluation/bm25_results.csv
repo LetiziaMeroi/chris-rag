@@ -1,0 +1,8 @@
+question,expected_string,first_relevant_rank,hit_at_1,hit_at_3,hit_at_5,mrr,top1_file,top1_page,top1_chunk_id,top1_score
+How many participants are in the CHRIS baseline study?,"13,393",2,0,1,1,0.5,dyaf064-3.pdf,2,dyaf064-3_p2_c0,13.130407578899128
+CHRIS baseline participants,"13,393",,0,0,0,0.0,dyaf064-3.pdf,5,dyaf064-3_p5_c2,10.936141401204683
+What is the CHRIS data access policy?,data access policy,1,1,1,1,1.0,1674124649-data-and-sample-access-policy_v2.pdf,1,1674124649-data-and-sample-access-policy_v2_p1_c0,21.25234722950279
+blood pressure,Blood pressure,1,1,1,1,1.0,s12967-019-02130-z.pdf,2,s12967-019-02130-z_p2_c6,10.065594461817401
+What is the correct full name of the CHRIS study?,Cooperative Health Research in South Tyrol,1,1,1,1,1.0,1772024710-chris-citation-guide_v1-4.pdf,3,1772024710-chris-citation-guide_v1-4_p3_c0,14.32592479580432
+What is the CHRIS NAFLD sub-study?,CHRIS-NAFLD,4,0,0,1,0.25,1772024710-chris-citation-guide_v1-4.pdf,4,1772024710-chris-citation-guide_v1-4_p4_c3,18.01705413278018
+What should publications using CHRIS baseline data cite?,Required references,1,1,1,1,1.0,1772024710-chris-citation-guide_v1-4.pdf,6,1772024710-chris-citation-guide_v1-4_p6_c2,22.53449940014935
