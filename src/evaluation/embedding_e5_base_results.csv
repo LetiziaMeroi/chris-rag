@@ -1,0 +1,19 @@
+question,expected_strings,first_relevant_rank,hit_at_1,hit_at_3,hit_at_5,mrr,top1_file,top1_page,top1_chunk_id,top1_score
+How many participants are in the CHRIS baseline study?,"13,393|13 393|13393",5,0,0,1,0.2,dyaf064-3.pdf,2,dyaf064-3_p2_c4,0.8649265766143799
+CHRIS baseline participants,"13,393|13 393|13393",2,0,1,1,0.5,dyaf064-3.pdf,2,dyaf064-3_p2_c4,0.8546537160873413
+What is the CHRIS data access policy?,data access policy|sample and data access policy,1,1,1,1,1.0,1674124649-data-and-sample-access-policy_v2.pdf,1,1674124649-data-and-sample-access-policy_v2_p1_c0,0.8745218515396118
+blood pressure,Blood pressure|blood pressure|BP,1,1,1,1,1.0,Codebook_CHRIS-baseline_distribute.pdf,54,Codebook_CHRIS-baseline_distribute_p54_c1,0.8702794313430786
+What is the correct full name of the CHRIS study?,Cooperative Health Research in South Tyrol,1,1,1,1,1.0,1772024710-chris-citation-guide_v1-4.pdf,3,1772024710-chris-citation-guide_v1-4_p3_c0,0.8579854369163513
+What is the CHRIS NAFLD sub-study?,CHRIS-NAFLD|NAFLD recall by phenotype|Non-Alcoholic Fatty Liver Disease,1,1,1,1,1.0,1772024710-chris-citation-guide_v1-4.pdf,4,1772024710-chris-citation-guide_v1-4_p4_c3,0.8772723078727722
+What should publications using CHRIS baseline data cite?,Required references|must cite|baseline data or samples must cite,1,1,1,1,1.0,1772024710-chris-citation-guide_v1-4.pdf,6,1772024710-chris-citation-guide_v1-4_p6_c2,0.8607147932052612
+What sequencing data is available in CHRIS?,exome sequencing|genotyping|WES,3,0,1,1,0.3333333333333333,dyaf064-3.pdf,7,dyaf064-3_p7_c0,0.8527575135231018
+Which omics data were collected?,metabolomics|proteomics|genotyping,1,1,1,1,1.0,dyaf064-3.pdf,5,dyaf064-3_p5_c0,0.8336305022239685
+What is the baseline period of CHRIS?,2011|2018,1,1,1,1,1.0,Codebook_CHRIS-baseline_distribute.pdf,1,Codebook_CHRIS-baseline_distribute_p1_c0,0.832422137260437
+What is the follow-up status?,follow-up|ongoing,1,1,1,1,1.0,dyaf064-3.pdf,2,dyaf064-3_p2_c4,0.8027899265289307
+Where was the CHRIS study conducted?,Vinschgau|South Tyrol,1,1,1,1,1.0,1772024710-chris-citation-guide_v1-4.pdf,9,1772024710-chris-citation-guide_v1-4_p9_c1,0.8607226610183716
+What kind of samples were biobanked?,biobank|samples,1,1,1,1,1.0,s12967-015-0704-9.pdf,5,s12967-015-0704-9_p5_c5,0.8370842933654785
+What does CHRIS collect about participants?,socio-demographic|clinical|molecular,1,1,1,1,1.0,dyaf064-3.pdf,3,dyaf064-3_p3_c0,0.8409947156906128
+What types of data does CHRIS collect?,socio-demographic|clinical|molecular,5,0,0,1,0.2,dyaf064-3.pdf,7,dyaf064-3_p7_c0,0.8462866544723511
+Which omics technologies are included in CHRIS?,genotyping|exome sequencing|metabolomics|proteomics,1,1,1,1,1.0,dyaf064-3.pdf,7,dyaf064-3_p7_c0,0.852051854133606
+Is the CHRIS follow-up study completed?,follow-up study is ongoing|ongoing,,0,0,0,0.0,dyaf064-3.pdf,2,dyaf064-3_p2_c4,0.8756331205368042
+What is the CHRIS cohort used for?,precision health|research|collaboration,5,0,0,1,0.2,s12967-015-0704-9.pdf,1,s12967-015-0704-9_p1_c2,0.857647180557251

@@ -35,14 +35,21 @@ Total number of chunks:
 
 ## Results
 
-| | TF-IDF | BM25| Embeddings |
-| Hit@1 | 0.667 | 0.611 | 0.389
-| Hit@3 | 0.722 | 0.889 | 0.611
-| Hit@5 | 0.778 | 0.944 | 0.722
-| MRR | 0.706 | 0.733 | 0.491
+| Method | Hit@1 | Hit@3 | Hit@5 | MRR |
+|---|---:|---:|---:|---:|
+| TF-IDF | 0.667 | 0.722 | 0.778 | 0.706 |
+| BM25 | 0.611 | 0.889 | 0.944 | 0.733 |
+| MiniLM embeddings | 0.333 | 0.611 | 0.667 | 0.468 |
+| Naive hybrid MiniLM | 0.500 | 0.611 | 0.833 | 0.606 |
+| RRF hybrid MiniLM | 0.500 | 0.722 | 0.778 | 0.613 |
+| E5-base embeddings | 0.667 | 0.778 | 0.944 | 0.746 |
+| RRF hybrid E5-base | 0.667 | 0.944 | 1.000 | 0.798 |
 
 ## Evaluation 05/08/2026
 
 BM25 currently performs better than semantic embeddings on the evaluation set. 
 This is likely because many questions require exact factual evidence, such as participant counts, policy names, 
 and specific CHRIS terminology. Semantic retrieval often retrieves topically related chunks but may miss the exact answer string.
+
+The retrieval-oriented multilingual E5 model substantially improves semantic retrieval compared with the MiniLM embedding baseline. 
+Combining BM25 and E5 embeddings with Reciprocal Rank Fusion gives the best overall performance, reaching Hit@5 = 1.000 and the highest MRR.
