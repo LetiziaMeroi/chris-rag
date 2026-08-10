@@ -1,0 +1,95 @@
+{
+  "question": "How many participants are in the CHRIS baseline study?",
+  "answer_candidates": [
+    {
+      "rank": 1,
+      "sentence": "CHRIS study and sample description Use the following information to guide the language used to describe the CHRIS study population and the analytic sample used in developing the scientific publication: The CHRIS baseline study has 13,393 participants.",
+      "score": 0.8951739072799683,
+      "source": {
+        "file_name": "1772024710-chris-citation-guide_v1-4.pdf",
+        "collection": "governance",
+        "page": 3,
+        "chunk_id": "1772024710-chris-citation-guide_v1-4_p3_c1"
+      }
+    },
+    {
+      "rank": 2,
+      "sentence": "667 CHRIS baseline participants were previously enrolled in the Microisolates in South Tyrol (MICROS) study [8].",
+      "score": 0.8791493773460388,
+      "source": {
+        "file_name": "dyaf064-3.pdf",
+        "collection": "papers",
+        "page": 2,
+        "chunk_id": "dyaf064-3_p2_c1"
+      }
+    },
+    {
+      "rank": 3,
+      "sentence": "CHRIS Citation Guide V1.4 19 February 2026 4 The following standard description of the CHRIS study can be used in whole or part: – The Cooperative Health Research in South Tyrol (CHRIS) study is a population-based cohort of 13,393 adults aged 18 and over recruited from 13 municipalities in the alpine Val Venosta/Vinschgau district in the Bolzano/Bozen - South Tyrol province of northern Italy.",
+      "score": 0.8615671396255493,
+      "source": {
+        "file_name": "1772024710-chris-citation-guide_v1-4.pdf",
+        "collection": "governance",
+        "page": 4,
+        "chunk_id": "1772024710-chris-citation-guide_v1-4_p4_c0"
+      }
+    }
+  ],
+  "retrieved_evidence": [
+    {
+      "rank": 1,
+      "rrf_score": 0.031544957774465976,
+      "bm25_rank": 1,
+      "embedding_rank": 6,
+      "file_name": "dyaf064-3.pdf",
+      "collection": "papers",
+      "page": 2,
+      "chunk_id": "dyaf064-3_p2_c0",
+      "text": "The Cooperative Health Research In South Tyrol (CHRIS) population cohort study was established in Vinschgau to le­ verage these opportunities, investigating factors associated with common aging-related conditions, including cardiovas­ cular, metabolic, and neuropsychiatric health in a dynamic, longitudinal manner. Results are relevant to rural European populations, given similar genetic backgrounds, lifestyles, and sociodemographic patterns, and representativeness can be enhanced by calibration methods. Who is in the cohort? From 2011 to 2018, all Vinschgau adults 18 years and older able to attend an in-person study visit and complete informed consent were eligible for the CHRIS baseline. Invitation let­ ters were mailed to all eligible inhabitants identified through publicly available electoral lists, and up to two reminders were mailed to non-responders. Further recruitment details are described elsewhere [7]. 13 393 participants were recruited with a median age of 46 years (range: 18–94). 54% of participants were female, and 86% were born in the study area. 667 CHRIS baseline participants were previously enrolled in the Microisolates in"
+    },
+    {
+      "rank": 2,
+      "rrf_score": 0.0315136476426799,
+      "bm25_rank": 2,
+      "embedding_rank": 5,
+      "file_name": "1772024710-chris-citation-guide_v1-4.pdf",
+      "collection": "governance",
+      "page": 3,
+      "chunk_id": "1772024710-chris-citation-guide_v1-4_p3_c1",
+      "text": "les, the CHRIS study must be referred to as follows when first mentioned: – Cooperative Health Research in South Tyrol (CHRIS) study Later reference to the study can be shortened to “CHRIS study”. Please note that the preferred capitalization is lower case for “study”. Please use “CHRIS study” as a key word when these are requested. For IfB researchers, please use “CHRIS study” as a keyword when entering the scientific publication in Converis. CHRIS study and sample description Use the following information to guide the language used to describe the CHRIS study population and the analytic sample used in developing the scientific publication: The CHRIS baseline study has 13,393 participants. The datasets available for approved research activities always consist of fewer than 13,393 participants due to consent restrictions or availability of requested data. If you do not work with the full CHRIS cohort, please refer to your dataset as a sample of the CHRIS cohort or study. The following language should be used when describing the CHRIS study in the text of any scientific publication: - cohort study - population-based study -"
+    },
+    {
+      "rank": 3,
+      "rrf_score": 0.029910714285714284,
+      "bm25_rank": 10,
+      "embedding_rank": 4,
+      "file_name": "dyaf064-3.pdf",
+      "collection": "papers",
+      "page": 2,
+      "chunk_id": "dyaf064-3_p2_c1",
+      "text": "ith a median age of 46 years (range: 18–94). 54% of participants were female, and 86% were born in the study area. 667 CHRIS baseline participants were previously enrolled in the Microisolates in South Tyrol (MICROS) study [8]. The cohort includes a high proportion of eligible individu­ als and is well-aligned with the reference population on socio-demographic, behavioral, and clinical aspects. Response rate estimates Given census-like recruitment and stepwise inclusion of mul­ tiple municipalities at different times over 7 years of CHRIS baseline enrolment, we could not estimate response rate using standard formulas. We therefore developed overall and sex- stratified models with different assumptions regarding the target population, applying official figures for adults in Vinschgau provided by the Italian National Institute of Statistics (ISTAT) from 2011 to 2018. A 42.6% response rate was estimated applying the narrow­ est eligibility assumptions, with higher participation among women than men (46.3% vs. 38.9%). Similar results were obtained from models with broader eligibility assumptions, with all response rate estimates exceeding the stated target of"
+    },
+    {
+      "rank": 4,
+      "rrf_score": 0.02921395544346364,
+      "bm25_rank": 18,
+      "embedding_rank": 1,
+      "file_name": "dyaf064-3.pdf",
+      "collection": "papers",
+      "page": 2,
+      "chunk_id": "dyaf064-3_p2_c4",
+      "text": "ndary edu­ cation (59.3%) than the general population (49.0%), while fewer reported lower secondary education (14.2% and 25.2%, respectively). Disease prevalence estimates among CHRIS participants aligned with estimates based on administrative sources except for cancer, which was less frequent in CHRIS (4.2% vs. 7.1%). Estimates of smoking and alcohol consumption were simi­ lar between surveys and CHRIS. Physical inactivity was reported by 10.9% of CHRIS participants below age 70 com­ pared to 5.0% in PASSI. More CHRIS participants were clas­ sified as obese (17.9% vs. 8.8% ADL) and fewer as normal weight (44.5% vs. 56.8% ADL), possibly reflecting direct measurement compared to self-report. How often have they been followed up? Core cohort CHRIS follow-up started in 2019 and stopped during the COVID-19 pandemic after recruiting 243 participants. Follow- up restarted in late 2021 and is anticipated to continue until 2027, with up to nine daily participants. Altogether, 4743 par­ ticipants have completed a pilot follow-up or follow-up visit to date, with a 9.8-year median follow-up (range: 5.7–12.8). Among 3832 CHRIS baseline participants from 2011 to 2013,"
+    },
+    {
+      "rank": 5,
+      "rrf_score": 0.02877846790890269,
+      "bm25_rank": 9,
+      "embedding_rank": 10,
+      "file_name": "1772024710-chris-citation-guide_v1-4.pdf",
+      "collection": "governance",
+      "page": 4,
+      "chunk_id": "1772024710-chris-citation-guide_v1-4_p4_c0",
+      "text": "CHRIS Citation Guide V1.4 19 February 2026 4 The following standard description of the CHRIS study can be used in whole or part: – The Cooperative Health Research in South Tyrol (CHRIS) study is a population-based cohort of 13,393 adults aged 18 and over recruited from 13 municipalities in the alpine Val Venosta/Vinschgau district in the Bolzano/Bozen - South Tyrol province of northern Italy. Mean age was 45 years at baseline and 54% of participants are female. Baseline visits were conducted from 2011 to 2018, collecting socio-demographic, health, lifestyle, and exposure data from questionnaires, interviews, and instrumental examinations, as well as urine and blood samples for biobanking, DNA extraction, and molecular characterization (genome and exome sequencing, metabolomics, and proteomics). Follow up visits are ongoing since 2019. The study was approved by the Ethics Committee of the Healthcare System of the Autonomous Province of Bolzano/Bozen - South Tyrol and funded by the Autonomous Province of Bolzano/Bozen - South Tyrol - Department of Innovation, Research, University and Museums and supported by the European Regional Development Fund (FESR1157). The"
+    }
+  ]
+}

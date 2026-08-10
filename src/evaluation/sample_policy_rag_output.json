@@ -1,0 +1,95 @@
+{
+  "question": "What is the CHRIS data access policy?",
+  "answer_candidates": [
+    {
+      "rank": 1,
+      "sentence": "This policy sets out the rules and procedures to be followed in accessing data and samples associated with the CHRIS study.",
+      "score": 0.8735010623931885,
+      "source": {
+        "file_name": "1674124649-data-and-sample-access-policy_v2.pdf",
+        "collection": "governance",
+        "page": 3,
+        "chunk_id": "1674124649-data-and-sample-access-policy_v2_p3_c0"
+      }
+    },
+    {
+      "rank": 2,
+      "sentence": "If further details are requested, the following statement can be provided: – For safeguarding compliance with the CHRIS study participants’ consent and the applicable personal data processing legislation, data qualifying as personal data under the GDPR that have been used for this analysis, may only be shared according to the CHRIS Access Policy (https://chrisportal.eurac.edu/downloads).",
+      "score": 0.8734784126281738,
+      "source": {
+        "file_name": "1772024710-chris-citation-guide_v1-4.pdf",
+        "collection": "governance",
+        "page": 6,
+        "chunk_id": "1772024710-chris-citation-guide_v1-4_p6_c1"
+      }
+    },
+    {
+      "rank": 3,
+      "sentence": "gislation, data qualifying as personal data under the GDPR that have been used for this analysis, may only be shared according to the CHRIS Access Policy (https://chrisportal.eurac.edu/downloads).",
+      "score": 0.8552756309509277,
+      "source": {
+        "file_name": "1772024710-chris-citation-guide_v1-4.pdf",
+        "collection": "governance",
+        "page": 6,
+        "chunk_id": "1772024710-chris-citation-guide_v1-4_p6_c2"
+      }
+    }
+  ],
+  "retrieved_evidence": [
+    {
+      "rank": 1,
+      "rrf_score": 0.03278688524590164,
+      "bm25_rank": 1,
+      "embedding_rank": 1,
+      "file_name": "1674124649-data-and-sample-access-policy_v2.pdf",
+      "collection": "governance",
+      "page": 1,
+      "chunk_id": "1674124649-data-and-sample-access-policy_v2_p1_c0",
+      "text": "Version 2 November 2022 CHRIS Study sample and data access policy Table of contents CHRIS Study sample and data access policy ............................................................................ 1 Overview ............................................................................................................................... 3 1. Definitions ......................................................................................................................... 4 2. Governance structure ........................................................................................................ 6 2.1 Access Committee membership structure .................................................................................6 2.1.1 Voting and delegates ................................................................................................................................... 6 2.1.2 Sub-committees ........................................................................................................................................... 6"
+    },
+    {
+      "rank": 2,
+      "rrf_score": 0.03149801587301587,
+      "bm25_rank": 3,
+      "embedding_rank": 4,
+      "file_name": "1674124649-data-and-sample-access-policy_v2.pdf",
+      "collection": "governance",
+      "page": 3,
+      "chunk_id": "1674124649-data-and-sample-access-policy_v2_p3_c0",
+      "text": "Version 2 November 2022 Overview The Cooperative Health Research In South Tyrol (CHRIS) study is a population-based study that commenced in 2011 and involves more than 13,000 Val Venosta/Vinschgau inhabitants. The objective of the CHRIS study is to study the risk factors for common diseases within the South Tyrolean population. Through the CHRIS portal, local, national, and international research institutes and companies that have a research purpose can apply for access to the samples and data. This policy sets out the rules and procedures to be followed in accessing data and samples associated with the CHRIS study. In particular:  Section 1 provides the definitions used for the purposes of this regulation.  Section 2 describes the governance structure.  Section 3 describes the type of data included.  Section 4 describes the different types of access.  Section 5 describes the rules and procedures for seeking access to samples and data.  Section 6 and section 7 discuss the provisions on consent, notification, and withdrawal that apply to any application, irrespective of affiliation, seeking access."
+    },
+    {
+      "rank": 3,
+      "rrf_score": 0.031009615384615385,
+      "bm25_rank": 4,
+      "embedding_rank": 5,
+      "file_name": "1772024710-chris-citation-guide_v1-4.pdf",
+      "collection": "governance",
+      "page": 6,
+      "chunk_id": "1772024710-chris-citation-guide_v1-4_p6_c1",
+      "text": "(23.5 Dr.MVH/31.05.07.14/19644) with an update approved by the Ethics Committee of the Healthcare System of the Autonomous Province of Bolzano/Bozen - South Tyrol on 18 September 2013 (57/2013). The following text should always be used following Ethics Committee approval statements: – The study conforms to the Declaration of Helsinki, and with national and institutional legal and ethical requirements. Data availability statement When a statement is requested on where to find CHRIS data used in analyses presented in a scientific publication, as is often the case with peer-reviewed publications, the following phrase should be provided: – Data and samples can be requested for clearly defined research activities via the CHRIS Portal (https://chrisportal.eurac.edu/). If further details are requested, the following statement can be provided: – For safeguarding compliance with the CHRIS study participants’ consent and the applicable personal data processing legislation, data qualifying as personal data under the GDPR that have been used for this analysis, may only be shared according to the CHRIS Access Policy (https://chrisportal.eurac.edu/downloads)."
+    },
+    {
+      "rank": 4,
+      "rrf_score": 0.030621785881252923,
+      "bm25_rank": 9,
+      "embedding_rank": 2,
+      "file_name": "1674124649-data-and-sample-access-policy_v2.pdf",
+      "collection": "governance",
+      "page": 4,
+      "chunk_id": "1674124649-data-and-sample-access-policy_v2_p4_c0",
+      "text": "Version 2 November 2022 1. Definitions Access Committee shall mean the committee to review and make a decision as to whether to approve all applications for access to the Data and Samples of the CHRIS study. Biological sample (also referred to as “Sample”) shall mean any sample of biological material. CHRIS study (also referred to as “CHRIS”) shall mean the population-based study that aims to investigate the determinants of common diseases and health within the South Tyrolean population. Reference to the CHRIS study also includes all CHRIS sub-studies, any studies applied to CHRIS, and all waves of data collection. Data shall mean raw data concerning participating individuals, aggregate data and research results as described in the Ethical Protocol for the CHRIS study Data exploration is a preliminary analysis of data, including manual descriptive analyses and automated data-mining, with the aim of generating hypotheses and serving the purpose of conceiving a scientific research project. Anonymous data shall mean data where the data subject is not or no longer identifiable and the process is irreversible, based on the current state of the knowledge."
+    },
+    {
+      "rank": 5,
+      "rrf_score": 0.0304147465437788,
+      "bm25_rank": 2,
+      "embedding_rank": 10,
+      "file_name": "1772024710-chris-citation-guide_v1-4.pdf",
+      "collection": "governance",
+      "page": 6,
+      "chunk_id": "1772024710-chris-citation-guide_v1-4_p6_c2",
+      "text": "gislation, data qualifying as personal data under the GDPR that have been used for this analysis, may only be shared according to the CHRIS Access Policy (https://chrisportal.eurac.edu/downloads). Required references Any scientific publication using CHRIS baseline data or samples must cite the following references:"
+    }
+  ]
+}
