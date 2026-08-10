@@ -1,19 +1,19 @@
 question,expected_strings
-How many participants are in the CHRIS baseline study?,"13,393|13 393|13393"
-CHRIS baseline participants,"13,393|13 393|13393"
-What is the CHRIS data access policy?,"data access policy|sample and data access policy"
-blood pressure,"Blood pressure|blood pressure|BP"
-What is the correct full name of the CHRIS study?,"Cooperative Health Research in South Tyrol"
-What is the CHRIS NAFLD sub-study?,"CHRIS-NAFLD|NAFLD recall by phenotype|Non-Alcoholic Fatty Liver Disease"
-What should publications using CHRIS baseline data cite?,"Required references|must cite|baseline data or samples must cite"
-What sequencing data is available in CHRIS?,exome sequencing|genotyping|WES
-Which omics data were collected?,metabolomics|proteomics|genotyping
-What is the baseline period of CHRIS?,2011|2018
-What is the follow-up status?,follow-up|ongoing
-Where was the CHRIS study conducted?,Vinschgau|South Tyrol
-What kind of samples were biobanked?,biobank|samples
-What does CHRIS collect about participants?,socio-demographic|clinical|molecular
-What types of data does CHRIS collect?,socio-demographic|clinical|molecular
-Which omics technologies are included in CHRIS?,genotyping|exome sequencing|metabolomics|proteomics
-Is the CHRIS follow-up study completed?,follow-up study is ongoing|ongoing
-What is the CHRIS cohort used for?,precision health|research|collaboration
+"How many CHRIS baseline participants were recruited?","13,393|13 393|13393"
+"CHRIS baseline participants","13,393|13 393|13393"
+"What is the CHRIS data access policy?","data access policy|sample and data access policy|rules and procedures|accessing data and samples"
+"blood pressure","blood pressure|hypertension|systolic|diastolic"
+"What is the correct full name of the CHRIS study?","Cooperative Health Research in South Tyrol"
+"What is the CHRIS NAFLD sub-study?","CHRIS-NAFLD|NAFLD recall by phenotype|Non-Alcoholic Fatty Liver Disease"
+"What should publications using CHRIS baseline data cite?","Required references|must cite|baseline data or samples must cite"
+"What sequencing data is available in CHRIS?","exome sequencing|genotyping|WES|genome sequencing|sequencing"
+"Which omics data were collected?","metabolomics|proteomics|genotyping|multi-omics|molecular characterization"
+"When were CHRIS baseline visits conducted?","2011|2018|baseline visits were conducted"
+"What is the follow-up status?","follow-up|ongoing"
+"Where was the CHRIS study conducted?","Vinschgau|South Tyrol|Val Venosta"
+"What kind of samples were biobanked?","biobank|samples"
+"What does CHRIS collect about participants?","socio-demographic|clinical|molecular|sociodemographic|behavioral"
+"What types of data does CHRIS collect?","socio-demographic|clinical|molecular|sociodemographic|behavioral"
+"Which omics technologies are included in CHRIS?","genotyping|exome sequencing|metabolomics|proteomics|multi-omics"
+"What is the current CHRIS follow-up status?","follow-up study is ongoing|ongoing|continue until 2027|restarted in late 2021|Follow up visits are ongoing"
+"What research areas does the CHRIS cohort support?","precision health|research|collaboration|cardiovascular|metabolic|neuropsychiatric"
