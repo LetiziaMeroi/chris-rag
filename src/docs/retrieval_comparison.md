@@ -53,3 +53,9 @@ and specific CHRIS terminology. Semantic retrieval often retrieves topically rel
 
 The retrieval-oriented multilingual E5 model substantially improves semantic retrieval compared with the MiniLM embedding baseline. 
 Combining BM25 and E5 embeddings with Reciprocal Rank Fusion gives the best overall performance, reaching Hit@5 = 1.000 and the highest MRR.
+
+The first answer prototype avoids hand-written question-specific rules. It performs sentence-level semantic ranking 
+over the retrieved evidence and returns the most relevant answer sentences with file, page, and chunk citations. 
+This provides an extractive, citation-grounded baseline before introducing a generative LLM.
+
+

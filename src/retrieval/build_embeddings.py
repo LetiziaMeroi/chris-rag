@@ -8,9 +8,9 @@ from sentence_transformers import SentenceTransformer
 
 DATA_ROOT = Path("/storage/data/chris-rag")
 CHUNKS_PATH = DATA_ROOT / "processed" / "chunks" / "document_chunks.jsonl"
-OUTPUT_DIR = DATA_ROOT / "processed" / "embeddings"
+OUTPUT_DIR = DATA_ROOT / "processed" / "embeddings_e5_base"
 
-MODEL_NAME = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+MODEL_NAME = "intfloat/multilingual-e5-base"
 
 
 def load_chunks(path: Path):
@@ -28,7 +28,7 @@ def main():
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
     chunks = load_chunks(CHUNKS_PATH)
-    texts = [chunk["text"] for chunk in chunks]
+    texts = ["passage: " + chunk["text"] for chunk in chunks]
 
     print(f"Loaded chunks: {len(chunks)}")
     print(f"Loading model: {MODEL_NAME}")
