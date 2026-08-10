@@ -1,36 +1,69 @@
 from pathlib import Path
 import csv
-import pickle
+import json
 import re
 from typing import List, Dict
 
 import numpy as np
+from rank_bm25 import BM25Okapi
 from sentence_transformers import SentenceTransformer
 
 
 DATA_ROOT = Path("/storage/data/chris-rag")
-EMBEDDINGS_DIR = DATA_ROOT / "processed" / "embeddings_e5_base"
 
-EMBEDDINGS_PATH = EMBEDDINGS_DIR / "document_embeddings.npy"
-CHUNKS_PATH = EMBEDDINGS_DIR / "document_chunks.pkl"
+CHUNKS_PATH = DATA_ROOT / "processed" / "chunks" / "document_chunks.jsonl"
+EMBEDDINGS_PATH = DATA_ROOT / "processed" / "embeddings" / "document_embeddings.npy"
 
 QUESTIONS_PATH = Path("src/evaluation/questions.csv")
-OUTPUT_PATH = Path("src/evaluation/embedding_e5_base_results.csv")
+OUTPUT_PATH = Path("src/evaluation/hybrid_results.csv")
 
-MODEL_NAME = "intfloat/multilingual-e5-base"
+MODEL_NAME = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+
 TOP_K = 5
+ALPHA = 0.7
+
+
+STOPWORDS = {
+    "the", "a", "an", "and", "or", "of", "to", "in", "on", "for",
+    "is", "are", "was", "were", "be", "been", "being",
+    "what", "which", "who", "how", "many", "much",
+    "does", "do", "did", "with", "from", "by", "as", "at"
+}
+
+
+def tokenize(text: str) -> List[str]:
+    text = text.lower()
+    tokens = re.findall(r"[a-zA-Z0-9]+", text)
+    tokens = [t for t in tokens if t not in STOPWORDS and len(t) > 1]
+    return tokens
 
 
 def normalize_text(text: str) -> str:
-    """
-    Normalize text for simple string matching.
-    This helps match variants like:
-    13,393 / 13 393 / 13393
-    """
     text = text.lower()
     text = text.replace(",", "")
     text = re.sub(r"\s+", " ", text)
     return text.strip()
+
+
+def normalize_scores(scores: np.ndarray) -> np.ndarray:
+    min_score = scores.min()
+    max_score = scores.max()
+
+    if max_score == min_score:
+        return np.zeros_like(scores)
+
+    return (scores - min_score) / (max_score - min_score)
+
+
+def load_chunks(path: Path) -> List[Dict]:
+    chunks = []
+
+    with path.open("r", encoding="utf-8") as f:
+        for line in f:
+            if line.strip():
+                chunks.append(json.loads(line))
+
+    return chunks
 
 
 def load_questions(path: Path) -> List[Dict]:
@@ -39,20 +72,7 @@ def load_questions(path: Path) -> List[Dict]:
         return list(reader)
 
 
-def load_index():
-    embeddings = np.load(EMBEDDINGS_PATH)
-
-    with CHUNKS_PATH.open("rb") as f:
-        chunks = pickle.load(f)
-
-    return embeddings, chunks
-
-
 def find_first_relevant_rank(results: List[Dict], expected_strings: str):
-    """
-    Find the rank of the first retrieved chunk containing
-    at least one expected answer string.
-    """
     expected_list = [
         normalize_text(s)
         for s in expected_strings.split("|")
@@ -87,14 +107,21 @@ def compute_metrics(first_rank):
 
 
 def main():
-    embeddings, chunks = load_index()
+    chunks = load_chunks(CHUNKS_PATH)
     questions = load_questions(QUESTIONS_PATH)
 
-    print(f"Loaded embeddings: {embeddings.shape}")
-    print(f"Loaded chunks: {len(chunks)}")
-    print(f"Questions: {len(questions)}")
-    print(f"Loading model: {MODEL_NAME}")
+    texts = [chunk["text"] for chunk in chunks]
 
+    print(f"Loaded chunks: {len(chunks)}")
+    print(f"Loaded questions: {len(questions)}")
+    print(f"Hybrid alpha: {ALPHA}")
+
+    # Build BM25 index
+    tokenized_corpus = [tokenize(text) for text in texts]
+    bm25 = BM25Okapi(tokenized_corpus)
+
+    # Load embedding index
+    embeddings = np.load(EMBEDDINGS_PATH)
     model = SentenceTransformer(MODEL_NAME)
 
     rows = []
@@ -103,21 +130,31 @@ def main():
         question = q["question"]
         expected_strings = q["expected_strings"]
 
+        # BM25
+        bm25_scores = np.array(bm25.get_scores(tokenize(question)))
+        bm25_norm = normalize_scores(bm25_scores)
+
+        # Embeddings
         query_embedding = model.encode(
-            ["query: " + question],
+            [question],
             convert_to_numpy=True,
             normalize_embeddings=True,
         )[0]
 
-        # Since embeddings are normalized, dot product = cosine similarity.
-        scores = embeddings @ query_embedding
+        embedding_scores = embeddings @ query_embedding
+        embedding_norm = normalize_scores(embedding_scores)
 
-        top_indices = np.argsort(scores)[::-1][:TOP_K]
+        # Hybrid
+        hybrid_scores = ALPHA * bm25_norm + (1 - ALPHA) * embedding_norm
+
+        top_indices = np.argsort(hybrid_scores)[::-1][:TOP_K]
 
         results = [
             {
                 "chunk": chunks[i],
-                "score": float(scores[i]),
+                "hybrid_score": float(hybrid_scores[i]),
+                "bm25_score": float(bm25_norm[i]),
+                "embedding_score": float(embedding_norm[i]),
                 "rank": rank,
             }
             for rank, i in enumerate(top_indices, start=1)
@@ -139,7 +176,9 @@ def main():
             "top1_file": top1["file_name"],
             "top1_page": top1["page"],
             "top1_chunk_id": top1["chunk_id"],
-            "top1_score": float(results[0]["score"]),
+            "top1_hybrid_score": results[0]["hybrid_score"],
+            "top1_bm25_score": results[0]["bm25_score"],
+            "top1_embedding_score": results[0]["embedding_score"],
         })
 
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -156,8 +195,11 @@ def main():
             "top1_file",
             "top1_page",
             "top1_chunk_id",
-            "top1_score",
+            "top1_hybrid_score",
+            "top1_bm25_score",
+            "top1_embedding_score",
         ]
+
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(rows)

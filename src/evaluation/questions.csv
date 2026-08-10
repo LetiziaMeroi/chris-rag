@@ -6,3 +6,14 @@ blood pressure,"Blood pressure|blood pressure|BP"
 What is the correct full name of the CHRIS study?,"Cooperative Health Research in South Tyrol"
 What is the CHRIS NAFLD sub-study?,"CHRIS-NAFLD|NAFLD recall by phenotype|Non-Alcoholic Fatty Liver Disease"
 What should publications using CHRIS baseline data cite?,"Required references|must cite|baseline data or samples must cite"
+What sequencing data is available in CHRIS?,exome sequencing|genotyping|WES
+Which omics data were collected?,metabolomics|proteomics|genotyping
+What is the baseline period of CHRIS?,2011|2018
+What is the follow-up status?,follow-up|ongoing
+Where was the CHRIS study conducted?,Vinschgau|South Tyrol
+What kind of samples were biobanked?,biobank|samples
+What does CHRIS collect about participants?,socio-demographic|clinical|molecular
+What types of data does CHRIS collect?,socio-demographic|clinical|molecular
+Which omics technologies are included in CHRIS?,genotyping|exome sequencing|metabolomics|proteomics
+Is the CHRIS follow-up study completed?,follow-up study is ongoing|ongoing
+What is the CHRIS cohort used for?,precision health|research|collaboration

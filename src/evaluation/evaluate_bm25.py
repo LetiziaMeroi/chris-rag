@@ -129,10 +129,31 @@ def main():
             "hit_at_3": metrics["hit_at_3"],
             "hit_at_5": metrics["hit_at_5"],
             "mrr": metrics["mrr"],
-            "top1_file": top1["file_name"],
-            "top1_page": top1["page"],
-            "top1_chunk_id": top1["chunk_id"],
-            "top1_score": results[0]["score"],
+
+            "rank1_chunk_id": results[0]["chunk"]["chunk_id"],
+            "rank1_file": results[0]["chunk"]["file_name"],
+            "rank1_page": results[0]["chunk"]["page"],
+            "rank1_score": results[0]["score"],
+
+            "rank2_chunk_id": results[1]["chunk"]["chunk_id"],
+            "rank2_file": results[1]["chunk"]["file_name"],
+            "rank2_page": results[1]["chunk"]["page"],
+            "rank2_score": results[1]["score"],
+
+            "rank3_chunk_id": results[2]["chunk"]["chunk_id"],
+            "rank3_file": results[2]["chunk"]["file_name"],
+            "rank3_page": results[2]["chunk"]["page"],
+            "rank3_score": results[2]["score"],
+
+            "rank4_chunk_id": results[3]["chunk"]["chunk_id"],
+            "rank4_file": results[3]["chunk"]["file_name"],
+            "rank4_page": results[3]["chunk"]["page"],
+            "rank4_score": results[3]["score"],
+
+            "rank5_chunk_id": results[4]["chunk"]["chunk_id"],
+            "rank5_file": results[4]["chunk"]["file_name"],
+            "rank5_page": results[4]["chunk"]["page"],
+            "rank5_score": results[4]["score"],
         })
 
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -146,10 +167,12 @@ def main():
             "hit_at_3",
             "hit_at_5",
             "mrr",
-            "top1_file",
-            "top1_page",
-            "top1_chunk_id",
-            "top1_score",
+
+            "rank1_chunk_id", "rank1_file", "rank1_page", "rank1_score",
+            "rank2_chunk_id", "rank2_file", "rank2_page", "rank2_score",
+            "rank3_chunk_id", "rank3_file", "rank3_page", "rank3_score",
+            "rank4_chunk_id", "rank4_file", "rank4_page", "rank4_score",
+            "rank5_chunk_id", "rank5_file", "rank5_page", "rank5_score",
         ]
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
