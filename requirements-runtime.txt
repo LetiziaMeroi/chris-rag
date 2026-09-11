@@ -1,0 +1,12 @@
+fastapi
+uvicorn[standard]
+streamlit
+requests
+
+numpy
+pandas
+rank-bm25
+sentence-transformers
+
+duckdb
+ollama
