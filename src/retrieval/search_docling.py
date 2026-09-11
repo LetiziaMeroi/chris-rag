@@ -3,13 +3,21 @@ import argparse
 import json
 import re
 from typing import Dict, List
+import os
 
 import numpy as np
 from rank_bm25 import BM25Okapi
 from sentence_transformers import SentenceTransformer
 
 
-DATA_ROOT = Path("/storage/data/chris-rag/processed")
+BASE_DATA_ROOT = Path(
+    os.getenv(
+        "CHRIS_DATA_ROOT",
+        "/storage/data/chris-rag",
+    )
+)
+
+DATA_ROOT = BASE_DATA_ROOT / "processed"
 
 MODEL_NAME = "intfloat/multilingual-e5-base"
 

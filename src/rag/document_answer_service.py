@@ -1,3 +1,4 @@
+import os
 from typing import Dict, List
 
 from ollama import chat
@@ -12,7 +13,11 @@ from src.rag.evidence_selector import (
 )
 from src.rag.query_rewriter import QueryRewriter
 
-DEFAULT_MODEL = "llama3.1:8b"
+
+DEFAULT_MODEL = os.getenv(
+    "CHRIS_LLM_MODEL",
+    "llama3.1:8b",
+)
 
 
 class DocumentAnswerService:
@@ -42,7 +47,6 @@ class DocumentAnswerService:
         ):
 
             source = item["source"]
-
             label = f"T{i}"
 
             citation = (
@@ -128,8 +132,12 @@ class DocumentAnswerService:
         variables, devices, units, measurements, and protocols.
         7. Every factual claim must include a citation using only the supplied
         labels [T1], [T2], ... and [B1], [B2], ...
+        Never include file names, page numbers, table numbers, chunk IDs,
+        or other source metadata in the answer.
+        Only output the citation label, for example [B3].
         8. Answer in the same language as the user's question.
         9. Keep the answer concise, factual, and non-repetitive.
+        10. Do not repeat the user's question in the answer.
 
         Only when NO supplied evidence directly supports an answer, respond exactly:
         "The retrieved evidence is insufficient to answer this question."
@@ -209,6 +217,47 @@ class DocumentAnswerService:
             )
         )
 
+        answer_evidence = []
+
+        for i, item in enumerate(
+            text_results,
+            start=1,
+        ):
+            answer_evidence.append({
+                "label": f"T{i}",
+                "type": "text",
+                "source": item.get(
+                    "source",
+                    {},
+                ),
+                "text": item.get(
+                    "text",
+                    "",
+                ),
+            })
+
+
+        for i, item in enumerate(
+            table_results,
+            start=1,
+        ):
+            answer_evidence.append({
+                "label": f"B{i}",
+                "type": "table",
+                "source": item.get(
+                    "source",
+                    {},
+                ),
+                "text": item.get(
+                    "text",
+                    item.get("row", ""),
+                ),
+                "caption": item.get(
+                    "caption",
+                    "",
+                ),
+            })
+
         messages = self._build_messages(
             question=query,
             text_evidence=text_evidence,
@@ -235,5 +284,6 @@ class DocumentAnswerService:
             "query": query,
             "model": self.model_name,
             "final_answer": final_answer,
+            "answer_evidence": answer_evidence,
             "retrieval": retrieval,
         }

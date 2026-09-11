@@ -1,7 +1,11 @@
 from ollama import chat
 
+import os
 
-DEFAULT_MODEL = "llama3.1:8b"
+DEFAULT_MODEL = os.getenv(
+    "CHRIS_LLM_MODEL",
+    "llama3.1:8b",
+)
 
 
 class QueryRewriter:
