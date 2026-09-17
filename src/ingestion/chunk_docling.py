@@ -4,7 +4,7 @@ import json
 import re
 from collections import defaultdict
 from typing import Dict, List, Optional
-
+import csv
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
@@ -30,6 +30,9 @@ SKIP_LABELS = {
     "page_footer",
 }
 
+METADATA_PATH = Path(
+    "data/config/document_metadata.csv"
+)
 
 def clean_text(text: str) -> str:
     """
@@ -60,6 +63,35 @@ def clean_text(text: str) -> str:
 
     return text.strip()
 
+def load_document_metadata():
+
+    metadata = {}
+
+    with open(
+        METADATA_PATH,
+        newline="",
+        encoding="utf-8",
+    ) as f:
+
+        reader = csv.DictReader(f)
+
+        for row in reader:
+
+            metadata[row["file_name"]] = {
+                "year": (
+                    int(row["year"])
+                    if row["year"]
+                    else None
+                ),
+                "document_type": row[
+                    "document_type"
+                ],
+                "data_domain": row[
+                    "data_domain"
+                ],
+            }
+
+    return metadata
 
 def load_old_metadata(path: Path) -> Dict[str, Dict]:
     """

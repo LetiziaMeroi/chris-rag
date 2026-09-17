@@ -88,6 +88,21 @@ def get_retrieved_sources(result):
 
     return sources
 
+def is_insufficient_answer(answer: str) -> bool:
+    normalized = normalize(answer)
+
+    patterns = [
+        "retrieved evidence is insufficient",
+        "evidence is insufficient",
+        "insufficient to answer",
+        "not explicitly mentioned in the provided evidence",
+        "not explicitly stated in the provided evidence",
+    ]
+
+    return any(
+        pattern in normalized
+        for pattern in patterns
+    )
 
 def evaluate_fact_hits(
     answer: str,
@@ -157,7 +172,10 @@ def evaluate_source_hits(
 
 def has_citation(answer: str) -> bool:
     """
-    Detect citations such as [T1], [B3].
+    Detect citations such as:
+    [T1]
+    [B3]
+    [T3, page 4, chunk ...]
     """
 
     return bool(
@@ -232,6 +250,10 @@ def main():
     total_source_recall = 0.0
     citation_count = 0
 
+    answerable_total = 0
+    abstention_total = 0
+    abstention_correct = 0
+
     with open(
         OUTPUT_PATH,
         "w",
@@ -266,52 +288,90 @@ def main():
                 "final_answer"
             ]
 
-            retrieved_sources = (
-                get_retrieved_sources(
-                    result
+            answerable = (
+                row.get("answerable", "yes")
+                .strip()
+                .lower()
+                == "yes"
+            )
+
+            abstained = is_insufficient_answer(
+                answer
+            )
+
+            retrieved_sources = get_retrieved_sources(
+                result
+            )
+
+            citation_present = has_citation(
+                answer
+            )
+
+            # =================================================
+            # Answerable questions
+            # =================================================
+
+            if answerable:
+
+                answerable_total += 1
+
+                fact_hits, fact_recall = (
+                    evaluate_fact_hits(
+                        answer,
+                        expected_facts,
+                    )
                 )
-            )
 
-            fact_hits, fact_recall = (
-                evaluate_fact_hits(
-                    answer,
-                    expected_facts,
+                source_hits, source_recall = (
+                    evaluate_source_hits(
+                        retrieved_sources,
+                        expected_sources,
+                    )
                 )
-            )
 
-            source_hits, source_recall = (
-                evaluate_source_hits(
-                    retrieved_sources,
-                    expected_sources,
+                verdict = classify(
+                    fact_recall,
+                    source_recall,
                 )
-            )
 
-            citation_present = (
-                has_citation(answer)
-            )
+                total_fact_recall += fact_recall
+                total_source_recall += source_recall
 
-            verdict = classify(
-                fact_recall,
-                source_recall,
-            )
+                if citation_present:
+                    citation_count += 1
+
+
+            # =================================================
+            # Unanswerable / abstention questions
+            # =================================================
+
+            else:
+
+                abstention_total += 1
+
+                # Fact/source recall are not meaningful here.
+                fact_hits = []
+                source_hits = []
+
+                fact_recall = None
+                source_recall = None
+
+                if abstained:
+                    verdict = "correct"
+                    abstention_correct += 1
+                else:
+                    verdict = "incorrect"
+
 
             summary[verdict] += 1
-
-            total_fact_recall += (
-                fact_recall
-            )
-
-            total_source_recall += (
-                source_recall
-            )
-
-            if citation_present:
-                citation_count += 1
 
             record = {
                 "id": question_id,
                 "question": question,
                 "language": row["language"],
+                "category": row.get("category"),
+                "answerable": answerable,
+                "abstained": abstained,
                 "answer": answer,
                 "expected_facts": (
                     expected_facts
@@ -344,22 +404,31 @@ def main():
             print(answer)
 
             print("\nEVALUATION")
-            print(
-                f"Fact recall:   "
-                f"{fact_recall:.2f}"
-            )
-            print(
-                f"Source recall: "
-                f"{source_recall:.2f}"
-            )
-            print(
-                f"Citation:      "
-                f"{citation_present}"
-            )
-            print(
-                f"Verdict:       "
-                f"{verdict}"
-            )
+            if answerable:
+
+                print(
+                    f"Fact recall:   "
+                    f"{fact_recall:.2f}"
+                )
+
+                print(
+                    f"Source recall: "
+                    f"{source_recall:.2f}"
+                )
+
+                print(
+                    f"Citation:      "
+                    f"{citation_present}"
+                )
+
+            else:
+
+                print(
+                    f"Abstained:     "
+                    f"{abstained}"
+                )
+
+           
 
     n = len(rows)
 
@@ -386,22 +455,37 @@ def main():
         f"{summary['incorrect']}"
     )
 
-    if n:
+    if answerable_total:
 
         print(
             f"Mean fact recall:   "
-            f"{total_fact_recall / n:.3f}"
+            f"{total_fact_recall / answerable_total:.3f}"
         )
 
         print(
             f"Mean source recall: "
-            f"{total_source_recall / n:.3f}"
+            f"{total_source_recall / answerable_total:.3f}"
         )
 
         print(
             f"Citation rate:      "
-            f"{citation_count / n:.3f}"
+            f"{citation_count / answerable_total:.3f}"
         )
+
+    if abstention_total:
+
+        print(
+            f"Abstention accuracy: "
+            f"{abstention_correct / abstention_total:.3f}"
+        )
+
+    print(
+        f"Answerable questions: {answerable_total}"
+    )
+
+    print(
+        f"Abstention questions: {abstention_total}"
+    )
 
     print(
         f"\nDetailed results saved to:\n"

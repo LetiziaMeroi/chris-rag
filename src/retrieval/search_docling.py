@@ -98,6 +98,29 @@ def tokenize(text: str) -> List[str]:
         )
     ]
 
+def matches_filters(
+    item,
+    year=None,
+    document_type=None,
+):
+
+    source = item.get(
+        "source",
+        {},
+    )
+
+    if year is not None:
+        if source.get("year") != year:
+            return False
+
+    if document_type is not None:
+        if (
+            source.get("document_type")
+            != document_type
+        ):
+            return False
+
+    return True
 
 def load_chunks(path: Path) -> List[Dict]:
 
