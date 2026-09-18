@@ -2,13 +2,16 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 from threading import Lock
+import os
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
-LOG_DIR = (
-    PROJECT_ROOT
-    / "logs"
+LOG_DIR = Path(
+    os.getenv(
+        "CHRIS_LOG_DIR",
+        "logs",
+    )
 )
 
 LOG_PATH = (
