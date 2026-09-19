@@ -1,5 +1,6 @@
 import argparse
 import json
+import re
 
 from src.rag.document_answer_service import (
     DocumentAnswerService,
@@ -33,24 +34,46 @@ class QueryOrchestrator:
             {},
         )
 
-        # Evidence actually passed to the LLM,
-        # already labelled as T1, T2, B1, B2, ...
         evidence = result.get(
             "answer_evidence",
             [],
         )
 
+        final_answer = result.get(
+            "final_answer",
+            "",
+        )
+
+        normalized_answer = final_answer.lower()
+
+        abstention_phrases = [
+            "there is no evidence",
+            "no evidence in the provided",
+            "the provided evidence does not",
+            "not enough evidence",
+            "insufficient evidence",
+        ]
+
+        abstained = any(
+            phrase in normalized_answer
+            for phrase in abstention_phrases
+        )
+
         return {
             "route": "documents",
-            "status": result.get(
-                "status",
-                "ok",
+            "status": (
+                "abstention"
+                if abstained
+                else "ok"
             ),
             "query": query,
-            "answer": result.get(
-                "final_answer"
+            "answer": final_answer,
+            "evidence": (
+                []
+                if abstained
+                else evidence
             ),
-            "evidence": evidence,
+            "abstained": abstained,
             "metadata": {
                 "model": result.get(
                     "model"
@@ -60,7 +83,7 @@ class QueryOrchestrator:
                 ),
             },
         }
-
+    
     def _format_gwas_response(
         self,
         query: str,

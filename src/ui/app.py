@@ -114,6 +114,11 @@ if st.button(
             {},
         )
 
+        abstained = result.get(
+            "abstained",
+            False,
+        )
+
 
         # ==========================================
         # Main answer
@@ -252,7 +257,7 @@ if st.button(
         # Document evidence
         # ==========================================
 
-        if route == "documents":
+        if (route == "documents" and not abstained):
 
             st.subheader("Sources")
 
@@ -335,27 +340,33 @@ if st.button(
         # Raw metadata
         # ==========================================
 
-        with st.expander(
-            "Technical metadata"
-        ):
+        if not abstained:
 
-            st.json(
-                metadata
-            )
+            with st.expander(
+                "Technical metadata"
+            ):
 
-
-        with st.expander("Route and status"):
-
-            col1, col2 = st.columns(2)
-
-            with col1:
-                st.metric(
-                    "Route",
-                    route,
+                st.json(
+                    metadata
                 )
 
-            with col2:
-                st.metric(
-                    "Status",
-                    status,
-                )
+
+            with st.expander(
+                "Route and status"
+            ):
+
+                col1, col2 = st.columns(2)
+
+                with col1:
+
+                    st.metric(
+                        "Route",
+                        route,
+                    )
+
+                with col2:
+
+                    st.metric(
+                        "Status",
+                        status,
+                    )
