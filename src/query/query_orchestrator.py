@@ -52,6 +52,10 @@ class QueryOrchestrator:
             "the provided evidence does not",
             "not enough evidence",
             "insufficient evidence",
+            "evidence is insufficient",
+            "retrieved evidence is insufficient",
+            "cannot answer this question from the provided evidence",
+            "cannot answer from the provided evidence",
         ]
 
         abstained = any(
